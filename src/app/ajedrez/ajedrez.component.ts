@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
+IonicModule
 
 
 enum Pieezas {
@@ -15,19 +17,19 @@ enum Color {
   White,
   Black,
 }
+
 @Component({
-  selector: 'app-root',
-  templateUrl: 'app.component.html',
-  styleUrls: ['app.component.scss'],
+  selector: 'app-ajedrez',
+  templateUrl: './ajedrez.component.html',
+  styleUrls: ['./ajedrez.component.scss'],
 })
-export class AppComponent  implements OnInit {
+export class AjedrezComponent implements OnInit {
   board: Pieezas[][] = [];
 
   constructor() {}
 
   ngOnInit() {
     this.iniciarTablero();
-    
   }
 
   iniciarTablero(): void {
@@ -74,39 +76,5 @@ export class AppComponent  implements OnInit {
   getPieceClass(row: number, col: number): string {
     const piece = this.board[row][col];
     return `piece-${Pieezas[piece].toLowerCase()}`;
-  }
-
-  selectedPiece: { row: number, col: number } | null = null;
-
-  // ...
-
-  cellClicked(row: number, col: number): void {
-    const piece = this.board[row][col];
-
-    if (this.selectedPiece) {
-      // Movimiento de la pieza seleccionada
-      if (this.isValidMove(this.selectedPiece.row, this.selectedPiece.col, row, col)) {
-        this.movePiece(this.selectedPiece.row, this.selectedPiece.col, row, col);
-        this.selectedPiece = null;
-      }
-    } else {
-      // Selección de la pieza
-      if (piece !== Pieezas.Empty) {
-        this.selectedPiece = { row, col };
-      }
-    }
-  }
-
-  // Lógica de movimiento básica, debes expandirla según las reglas del ajedrez
-  isValidMove(startRow: number, startCol: number, endRow: number, endCol: number): boolean {
-    // Implementa lógica específica para cada tipo de pieza
-    return true;
-  }
-
-  movePiece(startRow: number, startCol: number, endRow: number, endCol: number): void {
-    // Mueve la pieza en el tablero
-    const piece = this.board[startRow][startCol];
-    this.board[endRow][endCol] = piece;
-    this.board[startRow][startCol] = Pieezas.Empty;
   }
 }

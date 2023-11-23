@@ -1,3 +1,19 @@
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
+  <ion-content>
+    <ion-grid>
+      <ion-row *ngFor="let row of [0, 1, 2, 3, 4, 5, 6, 7]">
+        <ion-col *ngFor="let col of [0, 1, 2, 3, 4, 5, 6, 7]" [ngClass]="getColor(row, col)">
+          <button expand="full" [ngClass]="getPieceClass(row, col)" (click)="cellClicked(row, col)">
+            <ion-icon *ngIf="getPieceClass(row, col) === 'piece-pawn'" name="body"></ion-icon>
+            <ion-icon *ngIf="getPieceClass(row, col) === 'piece-rook'" name="build"></ion-icon>
+            <ion-icon *ngIf="getPieceClass(row, col) === 'piece-knight'" name="bicycle"></ion-icon>
+            <ion-icon *ngIf="getPieceClass(row, col) === 'piece-bishop'" name="bonfire"></ion-icon>
+            <ion-icon *ngIf="getPieceClass(row, col) === 'piece-queen'" name="bug"></ion-icon>
+            <ion-icon *ngIf="getPieceClass(row, col) === 'piece-king'" name="beer"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>  
 </ion-app>

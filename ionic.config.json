@@ -1,0 +1,7 @@
+{
+  "name": "ajedrez",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
